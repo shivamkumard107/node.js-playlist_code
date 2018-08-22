@@ -1,5 +1,7 @@
-var counter = require('./count');
-console.log(counter(['shawn', 'shivam', 'mohit']));
+var stuff = require('./stuff');
+console.log(stuff.counter(['shawn', 'shivam', 'mohit']));
+console.log(stuff.adder(1,2));
+console.log(stuff.adder(stuff.pi, 5.00));
 
 // //normal function statement
 // function sayHi(){
