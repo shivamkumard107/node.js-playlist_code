@@ -1,14 +1,28 @@
-var stuff = require('./stuff');
-console.log(stuff.counter(['shawn', 'shivam', 'mohit']));
-console.log(stuff.adder(1,2));
-console.log(stuff.adder(stuff.pi, 5.00));
+var events = require('events');
+var util = require('util');
+// var myEmitter = new events.EventEmitter();
+//
+// myEmitter.on('someEvents', function(mssg){
+//   console.log(mssg);
+// });
+//
+// myEmitter.emit('someEvents', 'the event was emitted');
 
-// //normal function statement
-// function sayHi(){
-//   console.log('Hiii!!');
-// }
-//
-// sayHi();
-// //function expression
-//
-// var sayBye = function(){};
+var Person = function(name) {
+  this.name = name;
+};
+
+util.inherits(Person, events.EventEmitter)
+var james = new Person('james');
+var mohit = new Person('mohit');
+var rhu = new Person('rhu');
+
+var people = [james, mohit, rhu];
+people.forEach(function(Person) {
+  Person.on('speak', function(mssg) {
+    console.log(Person.name + ' said: ' + mssg);
+  });
+});
+
+james.emit('speak', 'hey dude');
+rhu.emit('speak', 'I want to eat');
